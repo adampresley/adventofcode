@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"hash"
 	"strconv"
+	"strings"
 )
 
 type Hasher struct {
@@ -37,13 +38,5 @@ func (hasher *Hasher) intToBytes(value int) []byte {
 }
 
 func (hasher *Hasher) IsValidAnswer(result string) bool {
-	prefixLength := len(hasher.prefix)
-
-	if len(result) > prefixLength+1 {
-		if result[0:prefixLength] == hasher.prefix {
-			return true
-		}
-	}
-
-	return false
+	return strings.HasPrefix(result, hasher.prefix)
 }
