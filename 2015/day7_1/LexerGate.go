@@ -20,6 +20,6 @@ func LexerGate(lex *lexer.Lexer) lexer.LexFn {
 			return LexerBegin
 		}
 
-		lex.Inc()
+		lex.Inc(1)
 	}
 }

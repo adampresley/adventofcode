@@ -18,8 +18,7 @@ func LexerConnector(lex *lexer.Lexer) lexer.LexFn {
 		return lex.Errorf("A connector was expected but not found")
 	}
 
-	lex.Inc()
-	lex.Inc()
+	lex.Inc(2)
 
 	lex.Emit(TOKEN_CONNECTOR)
 	return LexerWire

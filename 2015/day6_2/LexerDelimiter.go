@@ -36,18 +36,18 @@ func LexerDelimiter(lex *lexer.Lexer) lexer.LexFn {
 		}
 
 		if char == "," {
-			lex.Inc()
+			lex.Inc(1)
 			lex.Emit(TOKEN_DELIMITER)
 			return LexerNumber
 		}
 
 		delim += lex.CurrentCharacter()
 		if delim == "through" {
-			lex.Inc()
+			lex.Inc(1)
 			lex.Emit(TOKEN_DELIMITER)
 			return LexerNumber
 		}
 
-		lex.Inc()
+		lex.Inc(1)
 	}
 }

@@ -23,6 +23,6 @@ func LexerCommand(lex *lexer.Lexer) lexer.LexFn {
 			return LexerNumber
 		}
 
-		lex.Inc()
+		lex.Inc(1)
 	}
 }

@@ -21,7 +21,7 @@ func LexerNumber(lex *lexer.Lexer) lexer.LexFn {
 		}
 
 		if lex.IsNumber() {
-			lex.Inc()
+			lex.Inc(1)
 			continue
 		}
 

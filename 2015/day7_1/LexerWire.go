@@ -35,6 +35,6 @@ func LexerWire(lex *lexer.Lexer) lexer.LexFn {
 			return LexerGate
 		}
 
-		lex.Inc()
+		lex.Inc(1)
 	}
 }
