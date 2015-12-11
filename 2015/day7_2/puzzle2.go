@@ -10,7 +10,6 @@ import (
 	"bufio"
 	"log"
 	"os"
-	"strconv"
 
 	"github.com/adampresley/lexer"
 )
@@ -45,7 +44,6 @@ func main() {
 	 * Calculate wire 'a'
 	 */
 	wireAResult := wires.EvaluateWireValue("a")
-	wireAResultAsString := strconv.Itoa(wireAResult)
 
 	log.Printf("Wire 'a' first result == %d\n", wireAResult)
 
@@ -58,7 +56,7 @@ func main() {
 
 	wires["b"].Source = append(wires["b"].Source, lexer.Token{
 		Type:  TOKEN_NUMBER,
-		Value: wireAResultAsString,
+		Value: wireAResult,
 	})
 
 	log.Printf("Wire 'a' second result == %d\n", wires.EvaluateWireValue("a"))

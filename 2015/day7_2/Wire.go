@@ -1,10 +1,6 @@
 package main
 
-import (
-	"strconv"
-
-	"github.com/adampresley/lexer"
-)
+import "github.com/adampresley/lexer"
 
 type Wire struct {
 	Name   string
@@ -53,8 +49,7 @@ func (wire *Wire) Evaluate(wires WireCollection) int {
 	if len(wire.Source) == 1 {
 		// Number
 		if wire.Source[0].Type == TOKEN_NUMBER {
-			result1, _ = strconv.Atoi((wire.Source[0].Value).(string))
-			return result1
+			return (wire.Source[0].Value).(int)
 		}
 
 		// Wire
@@ -66,11 +61,11 @@ func (wire *Wire) Evaluate(wires WireCollection) int {
 	 */
 	if len(wire.Source) == 2 {
 		if wire.Source[1].Type == TOKEN_NUMBER {
-			result1, _ = strconv.Atoi((wire.Source[1].Value).(string))
-			return result1
+			result1 = (wire.Source[1].Value).(int)
+		} else {
+			result1 = wires.EvaluateWireValue((wire.Source[1].Value).(string))
 		}
 
-		result1 = wires.EvaluateWireValue((wire.Source[1].Value).(string))
 		return int(^uint16(result1))
 	}
 
@@ -78,13 +73,13 @@ func (wire *Wire) Evaluate(wires WireCollection) int {
 	 * Other GATE expressions
 	 */
 	if wire.Source[0].Type == TOKEN_NUMBER {
-		result1, _ = strconv.Atoi((wire.Source[0].Value).(string))
+		result1 = (wire.Source[0].Value).(int)
 	} else {
 		result1 = wires.EvaluateWireValue((wire.Source[0].Value).(string))
 	}
 
 	if wire.Source[2].Type == TOKEN_NUMBER {
-		result2, _ = strconv.Atoi((wire.Source[2].Value).(string))
+		result2 = (wire.Source[2].Value).(int)
 	} else {
 		result2 = wires.EvaluateWireValue((wire.Source[2].Value).(string))
 	}

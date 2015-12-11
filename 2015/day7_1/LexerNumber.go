@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strconv"
 	"strings"
 
 	"github.com/adampresley/lexer"
@@ -29,7 +30,10 @@ func LexerNumber(lex *lexer.Lexer) lexer.LexFn {
 		 */
 		nextFn := whatIsAfterNumber(lex)
 
-		lex.Emit(TOKEN_NUMBER)
+		lex.EmitWithTransform(TOKEN_NUMBER, func(tokenValue string) interface{} {
+			valueToInt, _ := strconv.Atoi(tokenValue)
+			return valueToInt
+		})
 		return nextFn
 	}
 }
